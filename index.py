@@ -10,27 +10,27 @@ def validate_priority(priority):
     return 1 <= priority <= 5
 
 
-# Abaixo está o controlador das tarefas
+# Abaixo está o controlador das tarefas, para funções de cadastrar tarefas e ver tarefas
 class TaskController:
     tasks = []
-
+    #Função para cadastro de tarefas
     @classmethod
     def add_task(cls, task):
         cls.tasks.append(task)
 
     @classmethod
-     # Função para visualizar as tarefas
+     # Função para visualizar as tarefas, depois de já feitas
     def view_tasks(cls):
         for task in cls.tasks:
-            print(f"Description: {task.description}, Due Date: {task.due_date}, Priority: {task.priority}")
+            print(f"Descrição: {task.description}, Data de Vencimento: {task.due_date}, Prioridade: {task.priority}")
 
    
 
-# Abaixo é uma interface para criação das tarefas e prioridades
+# Abaixo é uma interface, um menu para criação das tarefas e prioridades
 class ConsoleUI:
     @staticmethod
     def get_task_input():
-        description = input("Digite a descrição da tareda: ")
+        description = input("Digite a descrição da tarefa: ")
         due_date = input("Digite a Data: ")
         priority = int(input("Digite a Prioridade (de 1 a 5): "))
         return Task(description, due_date, priority)
