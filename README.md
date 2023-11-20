@@ -36,7 +36,7 @@ Permite ao usuário encerrar o programa.
 Certifique-se de ter o Python instalado em seu sistema. Para executar o programa, siga estas etapas:
 
 1. Abra um terminal na pasta do projeto.
-2. Execute o comando `python nome_do_arquivo.py` (substitua `nome_do_arquivo.py` pelo nome do arquivo onde o código está salvo).
+2. Execute o comando `python index.py`.
 
 ## Contribuidores
 
