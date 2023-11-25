@@ -40,7 +40,8 @@ class ConsoleUI:
 #aqui é a inicialização principal do programa
 def main():
     while True:
-        print("\n1. Adicionar tarefa\n2. Ver tarefas\n3. sair")
+        # print("\n1. Adicionar tarefa\n2. Ver tarefas\n3. sair")
+        print("\n1. Adicionar tarefa\n2. Ver tarefas\n3. Atualizar tarefa\n4. Excluir tarefa\n5. Sair")
         choice = input("Digite sua Escolha: ")
 
         if choice == "1":
@@ -99,7 +100,7 @@ class ConsoleUI:
 def main():
     while True:
         # Exibe as opções do menu
-        print("\n1. Adicionar tarefa\n2. Ver tarefas\n3. Sair")
+        print("\n1. Adicionar tarefa\n2. Ver tarefas\n3. Atualizar tarefa\n4. Excluir tarefa\n5. Sair")
         # Obtém a escolha do usuário
         choice = input("Digite sua Escolha: ")
 
@@ -114,11 +115,13 @@ def main():
         elif choice == "2":
             # Exibe todas as tarefas cadastradas
             TaskController.view_tasks()
-        elif choice == "3":
-            # Encerra o loop e sai do programa
-            break
+      # elif choice == "3":
+            # Atualizar uma tarefa
+        elif choice == "5":
+        # Encerra o loop e sai do programa
+        break
         else:
-            print("Escolha inválida. Tente Novamente")
+        print("Escolha inválida. Tente Novamente")
 
 # Verifica se este script está sendo executado como o programa principal
 if __name__ == "__main__":
