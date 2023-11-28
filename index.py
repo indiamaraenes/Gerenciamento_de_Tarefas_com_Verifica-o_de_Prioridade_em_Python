@@ -23,25 +23,43 @@ class TaskController:
     @classmethod
      # Função/método para visualizar as tarefas, depois de já cadastradas
     def view_tasks(cls):
-        for task in cls.tasks:
+        sorted_tasks = sorted(cls.tasks, key=lambda x: x.priority, reverse=True)
+        for task in sorted_tasks:
             print(f"Descrição: {task.description}, Data de Vencimento: {task.due_date}, Prioridade: {task.priority}")
+
+        # for task in cls.tasks:
+        #     print(f"Descrição: {task.description}, Data de Vencimento: {task.due_date}, Prioridade: {task.priority}")
 
     @classmethod
     # Função/método para atualizar tarefas, depois de já cadastradas
-    def update_task(cls, index, new_task):
-        if 0 <= index < len(cls.tasks):
-            cls.tasks[index] = new_task
+    def update_task(cls, priority_index, new_task):
+        sorted_tasks = sorted(cls.tasks, key=lambda x: x.priority, reverse=True)
+
+        if 0 <= priority_index < len(sorted_tasks):
+            original_index = cls.tasks.index(sorted_tasks[priority_index])
+            cls.tasks[original_index] = new_task
             print("Tarefa atualizada com sucesso.")
         else:
             print("Índice inválido.")
+        # if 0 <= index < len(cls.tasks):
+        #     cls.tasks[index] = new_task
+        #     print("Tarefa atualizada com sucesso.")
+        # else:
+        #     print("Índice inválido.")
             
     @classmethod
-    def delete_task(cls, index):
-        if 0 <= index < len(cls.tasks):
-            deleted_task = cls.tasks.pop(index)
+    def delete_task(cls, priority_index):
+        sorted_tasks = sorted(cls.tasks, key=lambda x: x.priority, reverse=True)
+        if 0 <= priority_index < len(sorted_tasks):
+            deleted_task = cls.tasks.remove(sorted_tasks[priority_index])
             print(f"Tarefa excluida com sucesso: {deleted_task.description}")
         else:
             print("Índice inválido")
+        # if 0 <= index < len(cls.tasks):
+        #     deleted_task = cls.tasks.pop(index)
+        #     print(f"Tarefa excluida com sucesso: {deleted_task.description}")
+        # else:
+        #     print("Índice inválido")
 
 # Abaixo é uma interface, um menu para criação das tarefas e prioridades
 class ConsoleUI:
@@ -108,25 +126,43 @@ class TaskController:
     @classmethod
     def view_tasks(cls):
         # Itera sobre a lista de tarefas e imprime informações sobre cada tarefa
-        for task in cls.tasks:
+        sorted_tasks = sorted(cls.tasks, key=lambda x: x.priority, reverse=True)
+        for task in sorted_tasks:
             print(f"Descrição: {task.description}, Data de Vencimento: {task.due_date}, Prioridade: {task.priority}")
+            
+        # for task in cls.tasks:
+        #     print(f"Descrição: {task.description}, Data de Vencimento: {task.due_date}, Prioridade: {task.priority}")
     
     @classmethod
     # Função/método para atualizar tarefas, depois de já cadastradas
-    def update_task(cls, index, new_task):
-        if 0 <= index < len(cls.tasks):
-            cls.tasks[index] = new_task
+    def update_task(cls, priority_index, new_task):
+        sorted_tasks = sorted(cls.tasks, key=lambda x: x.priority, reverse=True)
+
+        if 0 <= priority_index < len(sorted_tasks):
+            original_index = cls.tasks.index(sorted_tasks[priority_index])
+            cls.tasks[original_index] = new_task
             print("Tarefa atualizada com sucesso.")
         else:
             print("Índice inválido.")
+        # if 0 <= index < len(cls.tasks):
+        #     cls.tasks[index] = new_task
+        #     print("Tarefa atualizada com sucesso.")
+        # else:
+        #     print("Índice inválido.")
             
     @classmethod
-    def delete_task(cls, index):
-        if 0 <= index < len(cls.tasks):
-            deleted_task = cls.tasks.pop(index)
+    def delete_task(cls, priority_index):
+        sorted_tasks = sorted(cls.tasks, key=lambda x: x.priority, reverse=True)
+        if 0 <= priority_index < len(sorted_tasks):
+            deleted_task = cls.tasks.remove(sorted_tasks[priority_index])
             print(f"Tarefa excluida com sucesso: {deleted_task.description}")
         else:
             print("Índice inválido")
+        # if 0 <= index < len(cls.tasks):
+        #     deleted_task = cls.tasks.pop(index)
+        #     print(f"Tarefa excluida com sucesso: {deleted_task.description}")
+        # else:
+        #     print("Índice inválido")
 
 # Abaixo é uma interface, um menu para criação das tarefas e prioridades
 class ConsoleUI:
