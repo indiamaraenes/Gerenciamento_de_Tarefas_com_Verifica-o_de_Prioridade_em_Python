@@ -26,7 +26,22 @@ class TaskController:
         for task in cls.tasks:
             print(f"Descrição: {task.description}, Data de Vencimento: {task.due_date}, Prioridade: {task.priority}")
 
-   
+    @classmethod
+    # Função/método para atualizar tarefas, depois de já cadastradas
+    def update_task(cls, index, new_task):
+        if 0 <= index < len(cls.tasks):
+            cls.tasks[index] = new_task
+            print("Tarefa atualizada com sucesso.")
+        else:
+            print("Índice inválido.")
+            
+    @classmethod
+    def delete_task(cls, index):
+        if 0 <= index < len(cls.tasks):
+            deleted_task = cls.tasks.pop(index)
+            print(f"Tarefa excluida com sucesso: {deleted_task.description}")
+        else:
+            print("Índice inválido")
 
 # Abaixo é uma interface, um menu para criação das tarefas e prioridades
 class ConsoleUI:
@@ -53,6 +68,16 @@ def main():
         elif choice == "2":
             TaskController.view_tasks()
         elif choice == "3":
+            index = int(input("Digite o índice da tarefa a ser atualizada: "))
+            new_task = ConsoleUI.get_task_input()
+            if validate_priority(new_task.priority):
+                TaskController.update_task(index, new_task)
+            else:
+                print("Priorização inválida,você deve escolher algo entre 1 e 5.")
+        elif choice == "4":
+            index = int(input("Digite o índice da tarefa a ser excluída:"))
+            TaskController.delete_task(index) 
+        elif choice == "5":
             break
         else:
             print("Escolha inválida. Tente Novamente")
@@ -85,6 +110,23 @@ class TaskController:
         # Itera sobre a lista de tarefas e imprime informações sobre cada tarefa
         for task in cls.tasks:
             print(f"Descrição: {task.description}, Data de Vencimento: {task.due_date}, Prioridade: {task.priority}")
+    
+    @classmethod
+    # Função/método para atualizar tarefas, depois de já cadastradas
+    def update_task(cls, index, new_task):
+        if 0 <= index < len(cls.tasks):
+            cls.tasks[index] = new_task
+            print("Tarefa atualizada com sucesso.")
+        else:
+            print("Índice inválido.")
+            
+    @classmethod
+    def delete_task(cls, index):
+        if 0 <= index < len(cls.tasks):
+            deleted_task = cls.tasks.pop(index)
+            print(f"Tarefa excluida com sucesso: {deleted_task.description}")
+        else:
+            print("Índice inválido")
 
 # Abaixo é uma interface, um menu para criação das tarefas e prioridades
 class ConsoleUI:
@@ -115,13 +157,25 @@ def main():
         elif choice == "2":
             # Exibe todas as tarefas cadastradas
             TaskController.view_tasks()
-      # elif choice == "3":
+        elif choice == "3":
             # Atualizar uma tarefa
+            index = int(input("Digite o índice da tarefa a ser atualizada: "))
+            new_task = ConsoleUI.get_task_input()
+            if validate_priority(new_task.priority):
+                TaskController.update_task(index, new_task)
+            else:
+                print("Priorização inválida, você deve escolher algo entre 1 e 5.")
+        elif choice == "4":
+            #Excluir tarefa
+            index = int(input("Digite o índice da tarefa a ser excluída: "))
+            TaskController.delete_task(index)
         elif choice == "5":
         # Encerra o loop e sai do programa
-        break
+            break
         else:
-        print("Escolha inválida. Tente Novamente")
+            print("Escolha inválida. Tente Novamente.")
+        
+      
 
 # Verifica se este script está sendo executado como o programa principal
 if __name__ == "__main__":
