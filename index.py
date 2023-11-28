@@ -43,10 +43,12 @@ class TaskController:
             
     @classmethod
     # Função/método para excluir tarefas, depois de ja cadastradas
-    def delete_task(cls, index):
-        if 0 <= index < len(cls.tasks):
-            deleted_task = cls.tasks.pop(index)
-            print(f"Tarefa excluida com sucesso: {deleted_task.description}")
+    def delete_task(cls, priority_index):
+        sorted_tasks = sorted(cls.tasks, key=lambda x: x.priority, reverse=True)
+        if 0 <= priority_index < len(sorted_tasks):
+            task_to_delete = sorted_tasks[priority_index]
+            cls.tasks.remove(task_to_delete)
+            print(f"Tarefa excluída com sucesso: {task_to_delete.description}")
         else:
             print("Índice inválido")
 
@@ -117,11 +119,7 @@ class TaskController:
         sorted_tasks = sorted(cls.tasks, key=lambda x: x.priority, reverse=True)
         for task in sorted_tasks:
             print(f"Descrição: {task.description}, Data de Vencimento: {task.due_date}, Prioridade: {task.priority}")
-    #Método de classe para atualizar tarefas, depois de já cadastradas
-    @classmethod
-    def update_task(cls, index, new_task):
-        if 0 <= index < len(cls.tasks):
-            cls.tasks[index] = new_task
+  
     # Função/método para atualizar tarefas, depois de já cadastradas
     def update_task(cls, priority_index, new_task):
         sorted_tasks = sorted(cls.tasks, key=lambda x: x.priority, reverse=True)
