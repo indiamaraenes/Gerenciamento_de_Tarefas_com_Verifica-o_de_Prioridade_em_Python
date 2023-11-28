@@ -36,6 +36,7 @@ class TaskController:
             print("Índice inválido.")
             
     @classmethod
+    # Função/método para excluir tarefas, depois de ja cadastradas
     def delete_task(cls, index):
         if 0 <= index < len(cls.tasks):
             deleted_task = cls.tasks.pop(index)
@@ -55,7 +56,6 @@ class ConsoleUI:
 #aqui é a inicialização principal do programa
 def main():
     while True:
-        # print("\n1. Adicionar tarefa\n2. Ver tarefas\n3. sair")
         print("\n1. Adicionar tarefa\n2. Ver tarefas\n3. Atualizar tarefa\n4. Excluir tarefa\n5. Sair")
         choice = input("Digite sua Escolha: ")
 
@@ -110,9 +110,8 @@ class TaskController:
         # Itera sobre a lista de tarefas e imprime informações sobre cada tarefa
         for task in cls.tasks:
             print(f"Descrição: {task.description}, Data de Vencimento: {task.due_date}, Prioridade: {task.priority}")
-    
+    #Método de classe para atualizar tarefas, depois de já cadastradas
     @classmethod
-    # Função/método para atualizar tarefas, depois de já cadastradas
     def update_task(cls, index, new_task):
         if 0 <= index < len(cls.tasks):
             cls.tasks[index] = new_task
