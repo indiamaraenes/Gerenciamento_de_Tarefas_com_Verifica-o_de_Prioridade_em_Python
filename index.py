@@ -26,21 +26,24 @@ class TaskController:
         sorted_tasks = sorted(cls.tasks, key=lambda x: x.priority, reverse=True)
         for task in sorted_tasks:
             print(f"Descrição: {task.description}, Data de Vencimento: {task.due_date}, Prioridade: {task.priority}")
-
-    @classmethod
     # Função/método para atualizar tarefas, depois de já cadastradas
-    def update_task(cls, index, update_task):
-        if 0 <= index < len(cls.tasks):
-            cls.tasks[index] = update_task
+
+    def update_task(self, index, updated_task):
+        #
+        adjusted_index = index - 1
+        if 0 <= adjusted_index < len(self.tasks):
+            self.tasks[adjusted_index] = updated_task
             print("Tarefa atualizada com suceso.")
         else:
             print("Índice inválido")
 
+
     @classmethod
     # Função/método para excluir tarefas, depois de ja cadastradas
     def deleted_task(cls,index):
-        if 0 <= index < len(cls.tasks):
-            deleted_task = cls.tasks.pop(index)
+        adjusted_index = index - 1
+        if 0 <= adjusted_index < len(cls.tasks):
+            deleted_task = cls.tasks.pop(adjusted_index)
             print(f"Tarefa excluida: {deleted_task.description}")
         else:
             print("Índice inválido.")
@@ -71,7 +74,7 @@ def main():
         elif choice == "3":
             index = int(input("Digite o índice da tarefa a ser atualizada: "))
             updated_task = ConsoleUI.get_task_input()
-            TaskController.update_task(index, updated_task)
+            TaskController().update_task(index, updated_task)
         elif choice == "4":
             index = int(input("Digite o índice da tarefa a ser excluída:"))
             TaskController.deleted_task(index) 
@@ -111,17 +114,19 @@ class TaskController:
             print(f"Descrição: {task.description}, Data de Vencimento: {task.due_date}, Prioridade: {task.priority}")
   
     # Função/método para atualizar tarefas, depois de já cadastradas
-    def update_task(cls, index, update_task):
-       if 0 <= index < len(cls.tasks):
-           cls.tasks[index] = update_task
+    def update_task(self, index, updated_task):
+       adjusted_index = index - 1
+       if 0 <= adjusted_index < len(self.tasks):
+           self.tasks[adjusted_index] = updated_task
            print("Tarefa atualizada com sucesso")
        else:
            print("Índice inválido.")
             
     @classmethod
     def deleted_task(cls, index):
-        if 0 <= index < len(cls.tasks):
-            deleted_task = cls.tasks.pop(index)
+        adjusted_index = index -1
+        if 0 <= adjusted_index < len(cls.tasks):
+            deleted_task = cls.tasks.pop(adjusted_index)
             print(f"Tarefa excluida: {deleted_task.description}")
         else:
             print("Índice inválido.")
@@ -158,15 +163,14 @@ def main():
         elif choice == "3":
             # Atualizar uma tarefa
             index = int(input("Digite o índice da tarefa a ser atualizada: "))
-            new_task = ConsoleUI.get_task_input()
-            if validate_priority(new_task.priority):
-                TaskController.update_task(index, new_task)
-            else:
-                print("Priorização inválida, você deve escolher algo entre 1 e 5.")
+            updated_task = ConsoleUI.get_task_input()
+            # if validate_priority(updated_task.priority):
+            TaskController().update_task(index, updated_task)
+            # print("Priorização inválida, você deve escolher algo entre 1 e 5.")
         elif choice == "4":
             #Excluir tarefa
             index = int(input("Digite o índice da tarefa a ser excluída: "))
-            TaskController.delete_task(index)
+            TaskController.deleted_task(index)
         elif choice == "5":
         # Encerra o loop e sai do programa
             break
