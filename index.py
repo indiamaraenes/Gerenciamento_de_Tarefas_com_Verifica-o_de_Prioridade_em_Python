@@ -29,28 +29,21 @@ class TaskController:
 
     @classmethod
     # Função/método para atualizar tarefas, depois de já cadastradas
-    def update_task(cls, priority_index, new_task):
-        sorted_tasks = sorted(cls.tasks, key=lambda x: x.priority, reverse=True)
-        original_index = None
-        for index, task in enumerate(cls.tasks):
-            original_index = index
-            break
-        if original_index is not None:
-            cls.tasks[original_index] = new_task
-            print("Tarefa atualizada com sucesso.")
-        else:
-            print("Índice inválido.")
-            
-    @classmethod
-    # Função/método para excluir tarefas, depois de ja cadastradas
-    def delete_task(cls, priority_index):
-        sorted_tasks = sorted(cls.tasks, key=lambda x: x.priority, reverse=True)
-        if 0 <= priority_index < len(sorted_tasks):
-            task_to_delete = sorted_tasks[priority_index]
-            cls.tasks.remove(task_to_delete)
-            print(f"Tarefa excluída com sucesso: {task_to_delete.description}")
+    def update_task(cls, index, update_task):
+        if 0 <= index < len(cls.tasks):
+            cls.tasks[index] = update_task
+            print("Tarefa atualizada com suceso.")
         else:
             print("Índice inválido")
+
+    @classmethod
+    # Função/método para excluir tarefas, depois de ja cadastradas
+    def deleted_task(cls,index):
+        if 0 <= index < len(cls.tasks):
+            deleted_task = cls.tasks.pop(index)
+            print(f"Tarefa excluida: {deleted_task.description}")
+        else:
+            print("Índice inválido.")
 
 # Abaixo é uma interface, um menu para criação das tarefas e prioridades
 class ConsoleUI:
@@ -77,14 +70,11 @@ def main():
             TaskController.view_tasks()
         elif choice == "3":
             index = int(input("Digite o índice da tarefa a ser atualizada: "))
-            new_task = ConsoleUI.get_task_input()
-            if validate_priority(new_task.priority):
-                TaskController.update_task(index, new_task)
-            else:
-                print("Priorização inválida,você deve escolher algo entre 1 e 5.")
+            updated_task = ConsoleUI.get_task_input()
+            TaskController.update_task(index, updated_task)
         elif choice == "4":
             index = int(input("Digite o índice da tarefa a ser excluída:"))
-            TaskController.delete_task(index) 
+            TaskController.deleted_task(index) 
         elif choice == "5":
             break
         else:
@@ -121,27 +111,20 @@ class TaskController:
             print(f"Descrição: {task.description}, Data de Vencimento: {task.due_date}, Prioridade: {task.priority}")
   
     # Função/método para atualizar tarefas, depois de já cadastradas
-    def update_task(cls, priority_index, new_task):
-        sorted_tasks = sorted(cls.tasks, key=lambda x: x.priority, reverse=True)
-        original_index = None
-        for index, task in enumerate(cls.tasks):
-            original_index = index
-            break
-        if original_index is not None:
-            cls.tasks[original_index] = new_task
-            print("Tarefa atualizada com sucesso.")
-        else:
-            print("Índice inválido.")
+    def update_task(cls, index, update_task):
+       if 0 <= index < len(cls.tasks):
+           cls.tasks[index] = update_task
+           print("Tarefa atualizada com sucesso")
+       else:
+           print("Índice inválido.")
             
     @classmethod
-    def delete_task(cls, priority_index):
-        sorted_tasks = sorted(cls.tasks, key=lambda x: x.priority, reverse=True)
-        if 0 <= priority_index < len(sorted_tasks):
-            task_to_delete =sorted_tasks[priority_index]
-            cls.tasks.remove(task_to_delete)
-            print(f"Tarefa excluida com sucesso: {task_to_delete.description}")
+    def deleted_task(cls, index):
+        if 0 <= index < len(cls.tasks):
+            deleted_task = cls.tasks.pop(index)
+            print(f"Tarefa excluida: {deleted_task.description}")
         else:
-            print("Índice inválido")
+            print("Índice inválido.")
         
 # Abaixo é uma interface, um menu para criação das tarefas e prioridades
 class ConsoleUI:
