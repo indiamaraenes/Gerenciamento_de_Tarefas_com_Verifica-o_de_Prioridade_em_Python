@@ -27,7 +27,15 @@ Permite aos usuários adicionar uma nova tarefa, garantindo a validade da priori
 
 A aplicação exibe todas as tarefas cadastradas, apresentando informações como descrição, data de vencimento e prioridade.
 
-#### 3.3. Sair
+#### 3.3. Atualizar Tarefa
+
+A aplicação pede um indice a ser atualizado, e permite que o usuário faça alterações em suas tarefas.
+
+#### 3.4. Excluir Tarefa
+
+A aplicação pede um indice a ser excluido e exclui a tarefa selecionada.
+
+#### 3.5. Sair
 
 Permite ao usuário encerrar o programa.
 
